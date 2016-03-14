@@ -1,5 +1,4 @@
-# 看漫画，学 Redux   A cartoon intro to Redux
-=========
+# 《看漫画，学 Redux》 —— A cartoon intro to Redux
 
 > 不写一行代码，轻松看懂 Redux 原理。 [原文](https://code-cartoons.com/a-cartoon-guide-to-flux-6157355ab207)
 
@@ -162,17 +161,17 @@ Flux 拥有控制型视图（controller views） 和常规型视图（regular vi
 
 应用中的不同部分需要在配置环节中整合到一起。
 
-1. **准备好 store*。*根组件会创建 store，并通过 createStore(reducer) 方法告诉 store 该使用哪个根 reducer。与此同时，根 reducer 也通过 combineReducers() 方法组建了一只向自己汇报的 reducer 团队。
+(1) **准备好 store*。*根组件会创建 store，并通过 createStore(reducer) 方法告诉 store 该使用哪个根 reducer。与此同时，根 reducer 也通过 combineReducers() 方法组建了一只向自己汇报的 reducer 团队。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*8_fU31-jNQnQ0dp-wplm5w.png)
 
-2. **设置 store 和组件之间的通信。**根组件将它所有的子组件包裹在 `<Provider>` 组件中，并建立了 Provider 与 store 之间的联系。
+(2) **设置 store 和组件之间的通信。**根组件将它所有的子组件包裹在 `<Provider>` 组件中，并建立了 Provider 与 store 之间的联系。
 
 Provider 本质上创建了一个用于更新视图组件的网络。那些智能组件通过 connect() 方法连入这个网络，以此确保他们能够获取到状态的更新。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*NYMutQLW8TcEgbO8VNeqHA.png)
 
-3. **准备好 action callback。**为了让木偶组件更好的处理 action，智能组件可以用 `bindActionCreators()` 方法来创建 action callback。这样做之后，智能组件就能给木偶组件传入一个回调（callback）。对应的 action 会在木偶组件调用这个回调时被自动 dispatch。（译者注：使用 bindActionCreators() 使得木偶组件无需关心 action 的 type 等信息，只用调用 props 中的某个方法传入需要的参数作为 action 的 payload 即可）
+(3) **准备好 action callback。**为了让木偶组件更好的处理 action，智能组件可以用 `bindActionCreators()` 方法来创建 action callback。这样做之后，智能组件就能给木偶组件传入一个回调（callback）。对应的 action 会在木偶组件调用这个回调时被自动 dispatch。（译者注：使用 bindActionCreators() 使得木偶组件无需关心 action 的 type 等信息，只用调用 props 中的某个方法传入需要的参数作为 action 的 payload 即可）
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*aVoD3gGddKUy3VCxwylthQ.png)
 
@@ -182,39 +181,39 @@ Provider 本质上创建了一个用于更新视图组件的网络。那些智�
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*GNDs7SY53lEhp7mX8V25lw.png)
 
-1. 视图发出了一个 action，action creator 将这个 action 格式化并返回。
+(1) 视图发出了一个 action，action creator 将这个 action 格式化并返回。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*p4EkWE_8upZ97Z0IapKDcQ.png)
 
-2. 这个 action 要么被自动 dispatch（如果我们在配置阶段使用了 bindActionCreators()），要么由视图层手动 dispatch。
+(2) 这个 action 要么被自动 dispatch（如果我们在配置阶段使用了 bindActionCreators()），要么由视图层手动 dispatch。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*zmFp3bmDq7b6Bvlo8Ineag.png)
 
-3. store 接受到这个 action 后，将当前的状态树和这个 action 传给根 reducer。
+(3) store 接受到这个 action 后，将当前的状态树和这个 action 传给根 reducer。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*zrsSoAAyf4pqTMHiA6P8Ww.png)
 
-4. 根 reducer 将整个状态树切分成一个个小块，然后将某一个小块分发给知道怎么处理这部分内容的子 reducer。
+(4) 根 reducer 将整个状态树切分成一个个小块，然后将某一个小块分发给知道怎么处理这部分内容的子 reducer。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*-S_dYe6BoQBgwSRpF7Hriw.png)
 
-5. 子 reducer 将传入的一小块状态树进行拷贝，然后在副本上进行修改，并最终将修改后的副本返回根 reducer。
+(5) 子 reducer 将传入的一小块状态树进行拷贝，然后在副本上进行修改，并最终将修改后的副本返回根 reducer。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*_R-rGNfKr2Xu2FlXNZNPJg.png)
 
-6. 当所有的子 reducer 返回他们修改的副本之后，根 reducer 将这些部分再次组合起来形成一颗新的状态树。然后根 reducer 将这个新的状态树交还给 store，store 再把自己的状态置为这个最新的状态树。
+(6) 当所有的子 reducer 返回他们修改的副本之后，根 reducer 将这些部分再次组合起来形成一颗新的状态树。然后根 reducer 将这个新的状态树交还给 store，store 再把自己的状态置为这个最新的状态树。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*bUMekI8QlEfFxSBCuVuIkw.png)
 
-7. store 告诉视图层绑定：「状态更新啦」
+(7) store 告诉视图层绑定：「状态更新啦」
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*x6vBvUlFJktJqty56jr0QQ.png)
 
-8. 视图层绑定让 store 把更新的状态传过来
+(8) 视图层绑定让 store 把更新的状态传过来
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*qGatznV4QujuxGe49YfX5A.png)
 
-9. 视图层绑定触发了一个重新渲染的操作（re-render）
+(9) 视图层绑定触发了一个重新渲染的操作（re-render）
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*Je2mow8mjYLngXreGGlIEg.png)
 
