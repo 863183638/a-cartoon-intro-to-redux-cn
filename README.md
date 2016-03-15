@@ -161,7 +161,7 @@ Flux 拥有控制型视图（controller views） 和常规型视图（regular vi
 
 应用中的不同部分需要在配置环节中整合到一起。
 
-(1) **准备好 store*。*根组件会创建 store，并通过 createStore(reducer) 方法告诉 store 该使用哪个根 reducer。与此同时，根 reducer 也通过 combineReducers() 方法组建了一只向自己汇报的 reducer 团队。
+(1) **准备好 store。**根组件会创建 store，并通过 createStore(reducer) 方法告诉 store 该使用哪个根 reducer。与此同时，根 reducer 也通过 combineReducers() 方法组建了一只向自己汇报的 reducer 团队。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1600/1*8_fU31-jNQnQ0dp-wplm5w.png)
 
