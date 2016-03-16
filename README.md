@@ -1,12 +1,12 @@
 # 《看漫画，学 Redux》 —— A cartoon intro to Redux
 
 > 不写一行代码，轻松看懂 Redux 原理。 [原文](https://code-cartoons.com/a-cartoon-guide-to-flux-6157355ab207)
+>
+> 如果你有任何疑惑，不妨在 [Issues](https://github.com/jasonslyvia/a-cartoon-intro-to-redux-cn/issues) 中提出。
 
 Flux 架构已然让人觉得有些迷惑，而比 Flux 更让人摸不着头脑的是 Flux 与 Redux 的区别。Redux 是一个基于 Flux 思想的新架构方式，本文将探讨它们的区别。
 
-如果你还没有看过[这篇关于 Flux 的文章](https://code-cartoons.com/a-cartoon-guide-to-flux-6157355ab207)，你应该先阅读一下。
-
-> 译者注：也可以参考[这篇文章](https://www.zhihu.com/question/33864532/answer/57657275)
+如果你还没有看过[这篇关于 Flux 的文章](https://code-cartoons.com/a-cartoon-guide-to-flux-6157355ab207)（译者注：也可以参考[这篇](https://www.zhihu.com/question/33864532/answer/57657275)），你应该先阅读一下。
 
 ## 为什么要改变 Flux？
 
