@@ -89,25 +89,25 @@ Redux 保留了 Flux 中 action creator 的概念。每当你想要改变应用�
 
 ### The store
 
-我把 Flux 中的 store 描述为一种过度控制的官僚机制。不能简单直接的修改状态，而是要求所有的状态改变都必须由 store 亲自产生，还必须要经历 action 分发那种套路。在 Redux 中，store 依然是这么的充满控制欲和官僚主义，但是又有些不一样。
+我把 Flux 中 store 的那一套机制描述为一种控制过度的官僚体系。你不能简单直接的修改状态，而是要求所有的状态改变都必须由 store 亲自产生，还必须要经历 action 分发那种套路。在 Redux 中，store 依然是这么的充满控制欲和官僚主义，但是又有些不一样。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1200/1*Gztc7THzxzOgJmGvJ95IQA.png)
 
 在 Flux 中，你可以拥有多个 store，每一个 store 都有自己的统治权。每个 store 都保存着自己对应的那部分状态，以及所有修改这些状态的逻辑。
 
-而 Redux 中的 store 更喜欢将权力下放，而且不得不这么做。因为在 Redux 中，你只能有一个 store……所以如果你打算像 Flux 那样 store 完全独立处理自己的事情，那么 Redux 中的 store 将变得工作量巨大。
+而 Redux 中的 store 更喜欢将权力下放，事实上不得不这么做。因为在 Redux 中，你只能有一个 store……所以如果你打算像 Flux 那样让 store 完全独立处理自己的事情，那么在 Redux 中，store 里的工作量将变得非常大。
 
-因此，Redux 中的 store 首先会保存整个应用的所有状态，然后将判断哪一部分状态需要改变的任务分配下去。而以根 reducer（root reducer）为首的 reducer 们将会承担这个任务。
+因此，Redux 中的 store 首先会保存整个应用的所有状态，然后将「判断哪一部分状态需要改变」的任务分配下去。而以根 reducer（root reducer）为首的 reducer 们将会承担这个任务。
 
-你可能发现这里好像没有 dispatcher 什么事，看起来有点越权，但 store 已经完全接管了 dispatch 相关的工作。
+你可能发现这里好像没有 dispatcher 什么事。是的，虽然看起来有点儿越权，但 Redux 里的 store 已经完全接管了 dispatcher 相关的工作。
 
 ### The reducers
 
-当 store 需要知道一个 action 触发后状态需要怎么改变时，他会去询问 reducer。根 reducer 会根据状态对象的键（key）将整个状态树进行拆分，然后将拆分后的每一块子状态传到知道该怎么响应的子 reducer 那里进行处理。
+当 store 需要知道一个 action 触发后状态需要怎么改变时，他会去询问 reducer。根 reducer 会根据状态对象的键（key）将整个状态树进行拆分，然后将拆分后的每一块子状态传到知道该怎么对这块状态进行响应的子 reducer 那里处理。
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1200/1*Vocy_6Gl9PbFlCIJsE9r3A.png)
 
-我把 reducers 看做是有点格外热衷复印的白领。他们不希望把任何事搞砸，因此他们不会修改任何传递给他们的文件。取而代之的是，他们会对这些文件进行复印，然后在复印件上进行修改。（译者注：当然，当这些修改后的复印件定稿后，他们也不会再去修改这些复印件。）
+我把 reducers 看做是对复印情有独钟的白领们。他们不希望把任何事搞砸，因此他们不会修改任何传递给他们的文件。取而代之的是，他们会对这些文件进行复印，然后在复印件上进行修改。（译者注：当然，当这些修改后的复印件定稿后，他们也不会再去修改这些复印件。）
 
 这是 Redux 的核心思想之一。不直接修改整个应用的状态树，而是将状态树的每一部分进行拷贝并修改拷贝后的部分，然后将这些部分重新组合成一颗新的状态树。
 
@@ -121,19 +121,19 @@ Flux 拥有控制型视图（controller views） 和常规型视图（regular vi
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1200/1*TgCkFcjlD9SxSrMvVX3DrA.png)
 
-在 Redux 中，也有一个类似的概念：智能组件和木偶组件。（译者注：在最新的 Redux 文档中，它们分别叫做容器型组件 Container component 和展示型组件 Presentational component）智能组件的职责就像经理一样，但是比起 Flux 中的角色，Redux 对经理的职责有更多的定义：
+在 Redux 中，也有一个类似的概念：智能组件和木偶组件。（译者注：在最新的 Redux 文档中，它们分别叫做容器型组件 Container component 和展示型组件 Presentational component）智能组件的职责就像经理一样，但是比起 Flux 中的角色，Redux 对经理的职责有了更多的定义：
 
- - 智能组件负责所有的 action。如果智能组件里包含的一个木偶组件需要触发一个 action，智能组件会通过 props 传给一个 function 给木偶组件，而木偶组件可以把这个 function 当做一个回调。
- - 智能组件不能定义 CSS 样式。
+ - 智能组件负责所有的 action 相关的工作。如果智能组件里包含的一个木偶组件需要触发一个 action，智能组件会通过 props 传给一个 function 给木偶组件，而木偶组件可以把这个 function 当做一个回调。
+ - 智能组件不定义 CSS 样式。
  - 智能组件几乎不会产生自己的 DOM 节点，他的工作是组织若干的木偶组件，由木偶组件来生成最终的 DOM 节点。
 
-木偶组件不会直接依赖 action 的触发，因为所有的 action 都会当做 props 传下来。这意味着木偶组件可以被任何一个逻辑不同的 App 拿去使用。同时木偶组件也需要有一定的样式来让自己变得好看一些（当然你可以让木偶组件接受某些 props 作为设置样式的变量）。
+木偶组件不会直接依赖 action（译者注：即不会在木偶组件里 `require` action 相关的文件），因为所有的 action 都会当做 props 传下来。这意味着木偶组件可以被任何一个逻辑不同的 App 拿去使用。同时木偶组件也需要有一定的样式来让自己变得好看一些（当然你可以让木偶组件接受某些 props 作为设置样式的变量）。
 
 ### 视图层绑定
 
 ![](https://d262ilb51hltx0.cloudfront.net/max/1200/1*D1RcVrMV2rp6AH9hk5xZ8g.png)
 
-要把 store 绑定到视图上，Redux 需要一点帮助。如果你在使用 React，那么你需要使用 react-redux。
+要把 store 绑定到视图上，Redux 还需要一点帮助。如果你在使用 React，那么你需要使用 react-redux。
 
 视图绑定工作有点像为组件树服务的 IT 部门。IT 部门确保所有的组件都正确的绑定到 store 上，并处理各种技术上的细节，以确保余下层级的组件对绑定相关的操作毫无感知。
 
