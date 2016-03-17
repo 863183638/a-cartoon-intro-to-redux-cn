@@ -123,7 +123,7 @@ Flux 拥有控制型视图（controller views） 和常规型视图（regular vi
 
 在 Redux 中，也有一个类似的概念：智能组件和木偶组件。（译者注：在最新的 Redux 文档中，它们分别叫做容器型组件 Container component 和展示型组件 Presentational component）智能组件的职责就像经理一样，但是比起 Flux 中的角色，Redux 对经理的职责有了更多的定义：
 
- - 智能组件负责所有的 action 相关的工作。如果智能组件里包含的一个木偶组件需要触发一个 action，智能组件会通过 props 传给一个 function 给木偶组件，而木偶组件可以把这个 function 当做一个回调。
+ - 智能组件负责所有的 action 相关的工作。如果智能组件里包含的一个木偶组件需要触发一个 action，智能组件会通过 props 传一个 function 给木偶组件，而木偶组件可以在需要触发 action 时调用这个 function。
  - 智能组件不定义 CSS 样式。
  - 智能组件几乎不会产生自己的 DOM 节点，他的工作是组织若干的木偶组件，由木偶组件来生成最终的 DOM 节点。
 
