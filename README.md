@@ -1,6 +1,6 @@
 # 《看漫画，学 Redux》 —— A cartoon intro to Redux
 
-> 不写一行代码，轻松看懂 Redux 原理。 [原文](https://code-cartoons.com/a-cartoon-guide-to-flux-6157355ab207)
+> 不写一行代码，轻松看懂 Redux 原理。 [原文](https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6)
 >
 > 如果你有任何疑惑，不妨在 [Issues](https://github.com/jasonslyvia/a-cartoon-intro-to-redux-cn/issues) 中提出。
 
